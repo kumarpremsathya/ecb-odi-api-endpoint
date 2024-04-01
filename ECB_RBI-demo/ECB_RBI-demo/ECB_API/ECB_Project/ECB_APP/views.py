@@ -12,7 +12,7 @@ from django.http import Http404
 
 class Login(APIView):
     # permission_classes = (AllowAny,)
-
+    permission_classes = (IsAuthenticated,)
     def post(self, request):
         username = request.data.get("username")
         password = request.data.get("password")
@@ -48,6 +48,7 @@ def validate(date_text):
 #filter date view
 
 class GetOrderdateView(APIView):
+    permission_classes = (IsAuthenticated,)
     def get(self, request):
         try:
             limit = int(request.GET.get('limit', 50))
